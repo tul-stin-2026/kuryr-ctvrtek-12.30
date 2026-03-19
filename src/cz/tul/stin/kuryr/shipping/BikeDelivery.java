@@ -1,14 +1,20 @@
 package cz.tul.stin.kuryr.shipping;
 
-public class BikeDelivery implements ShippingMethod {
-    private static final double FIXED_PRICE = 80;
-    private static final double MAX_WEIGHT = 5;
+// Implementace dopravy na kole
+public class BikeDelivery implements ShippingMethod { // Implementace rozhraní
+
+    private static final double FIXED_PRICE = 80;     // Fixní cena
+    private static final double MAX_WEIGHT = 5;       // Maximální povolená váha
 
     @Override
-    public double calculateCost(double weight) {
-        if (weight > MAX_WEIGHT) {
-            throw new IllegalArgumentException("Vaha musi byt mensi rovna " + MAX_WEIGHT + " kg.");
+    public double calculateCost(double weight) {      // Výpočet ceny
+
+        if (weight > MAX_WEIGHT) {                    // Kontrola váhového limitu
+            throw new IllegalArgumentException(       // Vyhození výjimky
+                    "Bike delivery supports max 5 kg" // Chybová zpráva
+            );
         }
-        return FIXED_PRICE;
+
+        return FIXED_PRICE;                           // Pokud je váha OK, vrací fixní cenu
     }
 }
