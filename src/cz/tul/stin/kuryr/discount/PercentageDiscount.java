@@ -7,7 +7,7 @@ public class PercentageDiscount implements DiscountStrategy {
 
     public PercentageDiscount(double percentage) {     // Konstruktor
         if (percentage < 0 || percentage > 100) {
-            throw new IllegalArgumentException("Sleva je v intervalu 0–100");
+            throw new IllegalArgumentException("Sleva je v intervalu 0–100!");
         }
         this.percentage = percentage;
     }
