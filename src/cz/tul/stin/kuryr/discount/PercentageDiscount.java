@@ -14,6 +14,6 @@ public class PercentageDiscount implements DiscountStrategy {
 
     @Override
     public double applyDiscount(double price) {        // Aplikace slevy
-        return price - (price * percentage / 100);     // Výpočet
+        return price - (price * percentage / 100); // Výpočet
     }
 }
