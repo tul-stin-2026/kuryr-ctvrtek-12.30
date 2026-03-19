@@ -16,6 +16,10 @@ public class Delivery {
                     ShippingMethod shippingMethod,
                     DiscountStrategy discountStrategy) {
 
+        if (weight < 0) {
+            throw new IllegalArgumentException("Weight must be greater than zero!");
+        }
+
         this.trackingNumber = trackingNumber;
         this.weight = weight;
         this.shippingMethod = shippingMethod;

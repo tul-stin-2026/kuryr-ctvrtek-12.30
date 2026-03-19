@@ -9,6 +9,9 @@ import cz.tul.stin.kuryr.discount.NoDiscount;
 import cz.tul.stin.kuryr.discount.PercentageDiscount;
 import cz.tul.stin.kuryr.shipping.*;
 
+import java.time.Clock;
+import java.time.ZoneId;
+
 // Testovací třída
 public class Main {
 
@@ -52,8 +55,16 @@ public class Main {
         System.out.println("Air (" + d3.getTrackingNumber() + ", " + d3.getWeight() + " kg ): " + d3.calculatePrice());
         System.out.println("Truck Express s pojištěním (" + d4.getTrackingNumber() + ", " + d4.getWeight() + " kg ): " + d4.calculatePrice()); // Kompletní výpočet
 
+        ShippingMethod weekendMethod = new AirDelivery();
+        ShippingMethod weekdayMethod = new TruckDelivery();
+        Clock clock = Clock.system(ZoneId.systemDefault());
+
         // Vytvoření služby
-        OrderService service = new OrderService();
+        OrderService service = new OrderService(
+                clock,
+                weekdayMethod,
+                weekendMethod
+        );
 
         // Vytvoření objednávky (např. 10 kg)
         double price = service.createOrder(10);
